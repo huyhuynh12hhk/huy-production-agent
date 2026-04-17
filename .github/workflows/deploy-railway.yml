@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - test/cicd-*
 
   # Allow manual trigger from the GitHub Actions UI.
   workflow_dispatch:
@@ -39,7 +40,7 @@ jobs:
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
         run: |
-          railway up --detach
+          railway up --service agent --detach
 
       # 4. Print the public URL for traceability in the Actions log.
       - name: Show deployment URL
